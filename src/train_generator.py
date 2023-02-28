@@ -196,8 +196,8 @@ class BaseGeneratorLightningModule(pl.LightningModule):
         #
         parser.add_argument("--max_len", type=int, default=250)
         parser.add_argument("--check_sample_every_n_epoch", type=int, default=5)
-        parser.add_argument("--num_samples", type=int, default=10000)
-        parser.add_argument("--sample_batch_size", type=int, default=1000)
+        parser.add_argument("--num_samples", type=int, default=100)
+        parser.add_argument("--sample_batch_size", type=int, default=10)
         parser.add_argument("--eval_moses", action="store_true")
 
         return parser
@@ -206,7 +206,7 @@ class BaseGeneratorLightningModule(pl.LightningModule):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     BaseGeneratorLightningModule.add_args(parser)
-    parser.add_argument("--max_epochs", type=int, default=100)
+    parser.add_argument("--max_epochs", type=int, default=1)
     parser.add_argument("--gradient_clip_val", type=float, default=1.0)
     parser.add_argument("--load_checkpoint_path", type=str, default="")
     parser.add_argument("--resume_from_checkpoint_path", type=str, default=None)
@@ -232,7 +232,6 @@ if __name__ == "__main__":
         mode="min",
     )
     trainer = pl.Trainer(
-        gpus=1,
         logger=neptune_logger,
         default_root_dir="../resource/log/",
         max_epochs=hparams.max_epochs,

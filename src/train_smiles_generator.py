@@ -146,7 +146,6 @@ if __name__ == "__main__":
         dirpath=os.path.join("../resource/checkpoint/", hparams.tag), monitor="validation/loss/total", mode="min",
     )
     trainer = pl.Trainer(
-        gpus=1,
         logger=neptune_logger,
         default_root_dir="../resource/log/",
         max_epochs=hparams.max_epochs,

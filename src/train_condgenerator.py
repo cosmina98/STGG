@@ -200,7 +200,6 @@ if __name__ == "__main__":
         mode="min",
     )
     trainer = pl.Trainer(
-        gpus=1,
         logger=neptune_logger,
         default_root_dir="../resource/log/",
         max_epochs=hparams.max_epochs,
